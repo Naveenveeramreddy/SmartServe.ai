@@ -1,0 +1,74 @@
+================================================================================
+🚀 SERVESMART AI - RUN GUIDE (LATEST)
+================================================================================
+
+This guide explains how to start, stop, and see your code changes INSTANTLY.
+
+--------------------------------------------------------------------------------
+1. HOW TO START THE APP (WITH LIVE SYNC)
+--------------------------------------------------------------------------------
+Open your terminal in the project root (smartcafeai) and run:
+
+    docker-compose -f docker/docker-compose.yml up -d --build
+
+- This starts BOTH the Backend and the Frontend.
+- Port 3000: Frontend (http://localhost:3000)
+- Port 8000: Backend (http://localhost:8000)
+
+--------------------------------------------------------------------------------
+2. HOW TO SEE CHANGES INSTANTLY (HOT RELOAD)
+--------------------------------------------------------------------------------
+I have enabled "Docker Volumes." This means you DON'T need to restart Docker
+when you edit code.
+
+1. Keep the app running (Step 1).
+2. Edit any file (e.g., src/app/page.tsx).
+3. Save the file.
+4. Look at http://localhost:3000. It will refresh AUTOMATICALLY.
+
+*Note: If it doesn't refresh automatically, just press 'F5' or 'Ctrl + R' in 
+your browser.*
+
+--------------------------------------------------------------------------------
+3. HOW TO STOP THE APP
+--------------------------------------------------------------------------------
+When you are done, run this in your terminal:
+
+    docker-compose -f docker/docker-compose.yml down
+
+--------------------------------------------------------------------------------
+4. TROUBLESHOOTING & REFRESHING
+--------------------------------------------------------------------------------
+- "Changes not showing?": Sometimes Docker's cache gets stuck. Run:
+    docker-compose -f docker/docker-compose.yml up -d --build
+
+- "Database Error?": If the database gets corrupted, run this to reset it:
+    docker exec docker-backend-1 rm -f serve_smart.db
+    docker exec docker-backend-1 python seed.py
+
+- "Port already in use?": If port 3000 is taken, stop any other process or run:
+    docker stop docker-frontend-1 
+    (then try starting again)
+
+--------------------------------------------------------------------------------
+5. QUICK LINKS
+--------------------------------------------------------------------------------
+- Home Page: http://localhost:3000
+- Admin Login: http://localhost:3000/login/admin (admin@smartcafe.ai / admin)
+- API Docs: http://localhost:8000/docs
+================================================================================
+
+
+Here are the default login credentials I've set up in your database:
+
+🛡️ Platform Admin
+Email: admin@smartcafe.ai
+Password: admin
+Login Page: http://localhost:3000/login/admin
+☕ Restaurant Owner
+Email: owner@cafe.com
+Password: password123
+Login Page: http://localhost:3000/login/restaurant
+👤 Customer
+Email: (You can create one via the Join Now page)
+Login Page: http://localhost:3000/login/customer
