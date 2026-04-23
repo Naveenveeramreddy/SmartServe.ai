@@ -8,7 +8,7 @@ COPY nextjs_app/package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy full app
+# Copy full app from nested folder
 COPY nextjs_app/ .
 
 # Build app
