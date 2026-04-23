@@ -2,20 +2,18 @@ FROM node:18
 
 WORKDIR /app
 
-# Copy only package files first (for caching)
-COPY package*.json ./
+# Copy package files from nested folder
+COPY nextjs_app/package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy remaining app files
-COPY . .
+# Copy full app
+COPY nextjs_app/ .
 
-# Build Next.js app
+# Build app
 RUN npm run build
 
-# Expose port
 EXPOSE 3000
 
-# Start app
 CMD ["npm", "start"]
