@@ -2,16 +2,14 @@ FROM node:18
 
 WORKDIR /app
 
-# Copy package files from nested folder
+# ✅ FIX: copy from nested folder
 COPY nextjs_app/package*.json ./
 
-# Install dependencies
 RUN npm install
 
-# Copy full app from nested folder
+# ✅ FIX: copy app from nested folder
 COPY nextjs_app/ .
 
-# Build app
 RUN npm run build
 
 EXPOSE 3000
