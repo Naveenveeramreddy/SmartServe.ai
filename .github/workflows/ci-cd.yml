@@ -43,13 +43,13 @@ jobs:
         docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_BACKEND }}:latest
         docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_BACKEND }}:${{ github.sha }}
 
-    # 🔹 Build Frontend Image (FIXED PATH)
+    # 🔹 Build Frontend Image (FIXED)
     - name: Build Frontend Image
       run: |
         docker build \
           -t ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_FRONTEND }}:latest \
           -t ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_FRONTEND }}:${{ github.sha }} \
-          ./frontend/nextjs_app
+          ./frontend
 
     # 🔹 Push Frontend Image
     - name: Push Frontend Image
